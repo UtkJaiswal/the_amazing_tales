@@ -262,6 +262,17 @@ const App = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    // Check if the script is already added to avoid duplicates
+    if (!document.querySelector('script[src="https://elevenlabs.io/convai-widget/index.js"]')) {
+      const script = document.createElement('script');
+      script.src = 'https://elevenlabs.io/convai-widget/index.js';
+      script.async = true;
+      script.type = 'text/javascript';
+      document.body.appendChild(script);
+    }
+  }, []);
+
   return (
     <div style={styles.app}>
       {/* Navbar */}
@@ -410,6 +421,7 @@ const App = () => {
           <button onClick={nextSlide} style={{ ...styles.navButton, ...styles.nextButton }}>›</button> */}
         </div>
       </section>
+      <elevenlabs-convai agent-id="5MTEMJISJkmfZOX1bwYd"></elevenlabs-convai>
 
       {/* Footer */}
       <footer style={styles.footer}>
